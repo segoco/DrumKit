@@ -28,11 +28,20 @@ function playKeySound(keyPressed){
         audio.play();
 }
 
+function buttonAnimate(currentKey){
+    document.querySelector("."+currentKey).classList.add("pressed");
+    setTimeout(function(){
+        document.querySelector("."+currentKey).classList.remove("pressed");
+    },100);
+}
+
 for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
     document.querySelectorAll(".set button")[i].addEventListener("click", function () {
-        playKeySound(this.innerHTML)
+        playKeySound(this.innerHTML);
+        buttonAnimate(this.innerHTML);
     });
 }
 document.addEventListener("keydown",function(event){
     playKeySound(event.key);
+    buttonAnimate(event.key);
 });
